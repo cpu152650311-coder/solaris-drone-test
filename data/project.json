@@ -1,0 +1,132 @@
+{
+  "brand_name": "Solaris Robotics",
+  "product_type": "Autonomous inspection drones and AI-powered defect detection for critical infrastructure",
+  "target_audience": "Oil & gas operators, wind farm managers, power utilities, mining operations, and maritime engineers requiring zero-pilot infrastructure inspection",
+  "hero": "Autonomous Inspection. Zero Pilots. Zero Compromise.",
+  "key_cta": "Request a Demo",
+  "services": [
+    "Autonomous Inspection Drones (ATEX Zone 1 Certified)",
+    "Thermal & LiDAR Sensor Payloads",
+    "Ultrasonic Thickness & Gas Detection Payloads",
+    "Fleet Management & Mission Planning Platform",
+    "Automated Defect Reporting & AI Analytics",
+    "Operator Training & Certification (IRATA / ISO 18436)",
+    "Custom Sensor Integration Services",
+    "API Access & Inspection Data Pipeline",
+    "Pay-Per-Inspection Pipeline Programs",
+    "24-Hour Global Deployment Support"
+  ],
+  "differentiators": [
+    "ATEX Zone 1 certified — the only inspection drone rated for explosive and hazardous atmospheres",
+    "Onboard AI detects and classifies defects in-flight — no post-mission upload delays",
+    "3D SLAM navigation operates in GPS-denied environments: tanks, pipelines, tunnels, and confined spaces",
+    "Pay-per-inspection pricing at $0.08/meter — eliminates CAPEX and lowers barrier to entry",
+    "24-hour global deployment capability with teams stationed in Houston, Rotterdam, Singapore, and Dubai"
+  ],
+  "brand_md": "## Solaris Robotics — Redefining Infrastructure Inspection\n\nSolaris Robotics was founded in 2021 by a team that knows both sides of the problem: engineers who built the world's most advanced UAV systems at DJI, and veterans who spent careers inspecting pipelines, offshore platforms, and wind assets in the field. That combination produced something the industry had never seen — an autonomous inspection drone engineered specifically for the environments where conventional drones and human inspectors both fall short.\n\n### Built for the World's Harshest Environments\n\nOur flagship autonomous UAVs carry full ATEX Zone 1 certification, making them the only drones in their class rated for deployment in explosive atmospheres. Where other systems stop at the perimeter, Solaris drones enter. They navigate inside storage tanks, traverse pipeline interiors, and operate on live offshore platforms — without a pilot in the loop.\n\nNavigation is powered by 3D SLAM (Simultaneous Localization and Mapping), enabling precise flight in GPS-denied environments. The drone builds its own map in real time, flies the mission, and returns — no external signal required.\n\n### Intelligence at the Edge\n\nSolaris drones don't just capture data — they process it. Onboard AI identifies and classifies defects during flight: corrosion, cracks, coating failures, thermal anomalies, and structural deformations. By the time the drone lands, the report is ready. No waiting for cloud uploads. No analyst backlog. Actionable findings in minutes.\n\nSensor payloads are modular and mission-configurable: 640×512 FLIR thermal imaging, 200-meter-range LiDAR, ultrasonic thickness gauges for wall-loss measurement, and gas detection sensors for leak identification. Every payload integrates directly with the Solaris Fleet Management Platform — a web-based dashboard for mission planning, live telemetry monitoring, and automated compliance reporting.\n\n### A Commercial Model Built for Operations Teams\n\nCapital expenditure is a barrier. We removed it. Solaris offers pay-per-inspection pricing — pipeline inspection starts at $0.08 per meter — so operators can deploy immediately without procurement cycles or asset depreciation. For organizations ready to build internal capability, we offer IRATA and ISO 18436 compliant operator training and full certification pathways.\n\n### Global Reach. Local Expertise.\n\nWith deployment teams stationed in Houston, Rotterdam, Singapore, and Dubai, Solaris can mobilize anywhere in the world within 24 hours. We serve oil & gas majors, independent wind farm operators, power transmission utilities, mining companies, and maritime operators across the US, EU, Middle East, and Southeast Asia.\n\nSolaris Robotics speaks the language of plant managers and engineering directors — because we were them. Precision, safety, and operational reliability are not marketing words here. They are the specification.",
+  "tech_stack": "nextjs",
+  "primary_language": "en",
+  "image_slots": [
+    {
+      "id": "hero_drone_in_flight",
+      "purpose": "Hero section: Solaris drone in flight near industrial infrastructure — offshore platform or wind turbine — dramatic low-angle shot, blue-grey industrial sky, high-visibility yellow safety accents on drone body, conveys scale and authority"
+    },
+    {
+      "id": "product_sensor_payload",
+      "purpose": "Product section: Close-up of modular sensor payload (thermal camera + LiDAR unit) mounted on drone chassis, clean studio-style industrial lighting, technical detail visible, communicates precision engineering"
+    },
+    {
+      "id": "detail_ai_dashboard",
+      "purpose": "Feature detail section: Fleet Management Platform UI on a rugged field tablet or monitor, showing live telemetry map, defect annotations on a pipeline scan, and automated report output — conveys real-time intelligence and ease of use"
+    },
+    {
+      "id": "credibility_field_deployment",
+      "purpose": "Credibility / About section: Solaris field technician in full PPE deploying drone at a real inspection site (pipeline corridor, tank farm, or wind farm), conveys operational legitimacy, safety culture, and global deployment capability"
+    }
+  ],
+  "project_slug": "solaris-drone-test",
+  "regions": [
+    "US",
+    "EU",
+    "ME",
+    "SEA"
+  ],
+  "project_name": "Solaris Robotics",
+  "design_package": {
+    "visual_identity": {
+      "color_palette": {
+        "primary": "#0d9488",
+        "secondary": "#2563eb",
+        "accent": "#0f766e",
+        "background": "#f8fafc",
+        "text": "#1e293b",
+        "muted": "#64748b"
+      },
+      "typography": {
+        "heading": "Outfit",
+        "body": "Geist",
+        "style": "modern/minimalist/tech"
+      },
+      "mood": "Precise, authoritative, operationally fearless, engineered",
+      "layout_strategy": "conversion-optimized",
+      "design_system": "swiss"
+    },
+    "image_briefs": [
+      {
+        "id": "hero_drone_in_flight",
+        "prompt": "Industrial inspection drone in low-angle flight approaching an offshore oil platform leg, shot from below against a pale overcast sky with soft blue-grey tones fading to white at horizon. Drone chassis features high-visibility yellow safety stripes and modular sensor housing. Dramatic perspective emphasizes mechanical scale and authority. Hard diffuse industrial lighting, photorealistic, clean crisp detail, no dark backgrounds, sky is light grey-white, overall image tone is bright and high-contrast against light.",
+        "alt": "Solaris autonomous inspection drone flying near offshore oil platform infrastructure"
+      },
+      {
+        "id": "product_sensor_payload",
+        "purpose_note": "Product section close-up",
+        "prompt": "Close-up macro studio photograph of a modular drone sensor payload unit — FLIR thermal camera lens and LiDAR emitter array mounted on a precision CNC-machined aluminium chassis, matte grey finish with teal accent trim. Placed on a pure white surface with soft directional studio lighting casting subtle shadow detail. Technical connectors and mounting rails visible. Clean white background, product photography style, shallow depth of field on sensor optics, no clutter, high precision engineering aesthetic.",
+        "alt": "Modular thermal and LiDAR sensor payload mounted on drone chassis, studio product photography"
+      },
+      {
+        "id": "detail_ai_dashboard",
+        "prompt": "Rugged field tablet mounted on a portable tripod stand displaying a web-based fleet management dashboard UI. Screen shows a live 3D pipeline scan with teal defect annotation markers, real-time telemetry readouts, and a structured inspection report panel. Background is a softly blurred bright industrial control room with white walls and diffuse daylight. Shallow depth of field keeps tablet sharp. Light neutral background, clean ambient lighting, no dark tones, photorealistic, conveys real-time data intelligence.",
+        "alt": "Fleet management platform showing live pipeline telemetry and AI defect annotations on rugged field tablet"
+      },
+      {
+        "id": "credibility_field_deployment",
+        "prompt": "Field technician in full PPE — white hard hat, high-visibility vest, flame-resistant coveralls — performing pre-flight check of an autonomous inspection drone on a concrete inspection pad at a pipeline corridor. Midday overcast natural light, pale sky, industrial infrastructure visible softly blurred in background. Technician posture conveys focused professionalism. Wide shot with drone prominent in foreground. Bright, clean, high-contrast lighting, light grey-white sky, no dark backgrounds, photorealistic documentary style.",
+        "alt": "Solaris field technician in PPE deploying autonomous inspection drone at pipeline site"
+      }
+    ],
+    "site_architecture": {
+      "sections": [
+        "Navigation",
+        "Hero",
+        "Differentiator Strip",
+        "Services Grid",
+        "Technology Deep-Dive",
+        "AI Analytics Feature Spotlight",
+        "Fleet Management Platform",
+        "Pricing & Commercial Model",
+        "Certifications & Compliance",
+        "Global Deployment",
+        "Case Studies / Social Proof",
+        "About & Founding Story",
+        "FAQ",
+        "CTA Banner",
+        "Footer"
+      ],
+      "navigation_style": "sticky-solid",
+      "hero_type": "split",
+      "interaction_patterns": [
+        "Scroll-triggered counter animation on key metrics (e.g. $0.08/meter, 24hr deployment, 4 global hubs)",
+        "Horizontal scroll card carousel for Services Grid on mobile",
+        "Sticky section progress indicator on Technology Deep-Dive long-form section",
+        "On-hover teal underline sweep on navigation links",
+        "Animated defect annotation pulse effect on AI Analytics dashboard image",
+        "Intersection Observer fade-and-slide-up for all feature blocks",
+        "Tab-switcher for sensor payload specs (Thermal / LiDAR / Ultrasonic / Gas)",
+        "Map pin pulse animation on Global Deployment section (Houston, Rotterdam, Singapore, Dubai)"
+      ],
+      "signature_element": "A persistent vertical teal rule line — 2px, full viewport height — anchored to the left edge of every content section, acting as a structural spine that visually unifies the page and signals precision engineering discipline; it dims to 20% opacity in body sections and intensifies to full #0d9488 at section headings"
+    },
+    "brand_essence": "Solaris Robotics puts intelligence where humans cannot go — turning the world's most hazardous infrastructure into fully readable, fully actionable data before the drone lands.",
+    "creative_rule": "Every data point earns its pixel: no decorative statistics, no orphaned icons — each number displayed on-screen must be paired with a one-line consequence statement that tells the operator exactly what that metric means for their operation and their budget."
+  }
+}

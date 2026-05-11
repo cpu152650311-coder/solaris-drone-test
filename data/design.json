@@ -1,0 +1,77 @@
+{
+  "visual_identity": {
+    "color_palette": {
+      "primary": "#0d9488",
+      "secondary": "#2563eb",
+      "accent": "#0f766e",
+      "background": "#f8fafc",
+      "text": "#1e293b",
+      "muted": "#64748b"
+    },
+    "typography": {
+      "heading": "Outfit",
+      "body": "Geist",
+      "style": "modern/minimalist/tech"
+    },
+    "mood": "Precise, authoritative, operationally fearless, engineered",
+    "layout_strategy": "conversion-optimized",
+    "design_system": "swiss"
+  },
+  "image_briefs": [
+    {
+      "id": "hero_drone_in_flight",
+      "prompt": "Industrial inspection drone in low-angle flight approaching an offshore oil platform leg, shot from below against a pale overcast sky with soft blue-grey tones fading to white at horizon. Drone chassis features high-visibility yellow safety stripes and modular sensor housing. Dramatic perspective emphasizes mechanical scale and authority. Hard diffuse industrial lighting, photorealistic, clean crisp detail, no dark backgrounds, sky is light grey-white, overall image tone is bright and high-contrast against light.",
+      "alt": "Solaris autonomous inspection drone flying near offshore oil platform infrastructure"
+    },
+    {
+      "id": "product_sensor_payload",
+      "purpose_note": "Product section close-up",
+      "prompt": "Close-up macro studio photograph of a modular drone sensor payload unit — FLIR thermal camera lens and LiDAR emitter array mounted on a precision CNC-machined aluminium chassis, matte grey finish with teal accent trim. Placed on a pure white surface with soft directional studio lighting casting subtle shadow detail. Technical connectors and mounting rails visible. Clean white background, product photography style, shallow depth of field on sensor optics, no clutter, high precision engineering aesthetic.",
+      "alt": "Modular thermal and LiDAR sensor payload mounted on drone chassis, studio product photography"
+    },
+    {
+      "id": "detail_ai_dashboard",
+      "prompt": "Rugged field tablet mounted on a portable tripod stand displaying a web-based fleet management dashboard UI. Screen shows a live 3D pipeline scan with teal defect annotation markers, real-time telemetry readouts, and a structured inspection report panel. Background is a softly blurred bright industrial control room with white walls and diffuse daylight. Shallow depth of field keeps tablet sharp. Light neutral background, clean ambient lighting, no dark tones, photorealistic, conveys real-time data intelligence.",
+      "alt": "Fleet management platform showing live pipeline telemetry and AI defect annotations on rugged field tablet"
+    },
+    {
+      "id": "credibility_field_deployment",
+      "prompt": "Field technician in full PPE — white hard hat, high-visibility vest, flame-resistant coveralls — performing pre-flight check of an autonomous inspection drone on a concrete inspection pad at a pipeline corridor. Midday overcast natural light, pale sky, industrial infrastructure visible softly blurred in background. Technician posture conveys focused professionalism. Wide shot with drone prominent in foreground. Bright, clean, high-contrast lighting, light grey-white sky, no dark backgrounds, photorealistic documentary style.",
+      "alt": "Solaris field technician in PPE deploying autonomous inspection drone at pipeline site"
+    }
+  ],
+  "site_architecture": {
+    "sections": [
+      "Navigation",
+      "Hero",
+      "Differentiator Strip",
+      "Services Grid",
+      "Technology Deep-Dive",
+      "AI Analytics Feature Spotlight",
+      "Fleet Management Platform",
+      "Pricing & Commercial Model",
+      "Certifications & Compliance",
+      "Global Deployment",
+      "Case Studies / Social Proof",
+      "About & Founding Story",
+      "FAQ",
+      "CTA Banner",
+      "Footer"
+    ],
+    "navigation_style": "sticky-solid",
+    "hero_type": "split",
+    "interaction_patterns": [
+      "Scroll-triggered counter animation on key metrics (e.g. $0.08/meter, 24hr deployment, 4 global hubs)",
+      "Horizontal scroll card carousel for Services Grid on mobile",
+      "Sticky section progress indicator on Technology Deep-Dive long-form section",
+      "On-hover teal underline sweep on navigation links",
+      "Animated defect annotation pulse effect on AI Analytics dashboard image",
+      "Intersection Observer fade-and-slide-up for all feature blocks",
+      "Tab-switcher for sensor payload specs (Thermal / LiDAR / Ultrasonic / Gas)",
+      "Map pin pulse animation on Global Deployment section (Houston, Rotterdam, Singapore, Dubai)"
+    ],
+    "signature_element": "A persistent vertical teal rule line — 2px, full viewport height — anchored to the left edge of every content section, acting as a structural spine that visually unifies the page and signals precision engineering discipline; it dims to 20% opacity in body sections and intensifies to full #0d9488 at section headings"
+  },
+  "brand_essence": "Solaris Robotics puts intelligence where humans cannot go — turning the world's most hazardous infrastructure into fully readable, fully actionable data before the drone lands.",
+  "creative_rule": "Every data point earns its pixel: no decorative statistics, no orphaned icons — each number displayed on-screen must be paired with a one-line consequence statement that tells the operator exactly what that metric means for their operation and their budget."
+}
