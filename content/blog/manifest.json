@@ -4,26 +4,26 @@
     {
       "slug": "how-do-autonomous-drones-navigate-inside-gps-denied-industrial-facilities-",
       "title": "How do autonomous drones navigate inside GPS-denied industrial facilities?",
-      "description": "Discover how industrial inspection drones use LiDAR, SLAM, and sensor fusion to navigate without GPS. Explore real-world applications and technology driving centimeter-level accuracy.",
+      "description": "Discover the sensor fusion, SLAM, and localization technologies that let inspection drones fly precisely through GPS-dark tanks, pipelines, and refineries.",
       "category": "technology-deep-dives",
       "author": "solaris-team",
       "publishedAt": "2026-05-12T00:00:00Z",
       "modifiedAt": "2026-05-12T00:00:00Z",
-      "featuredImage": "https://raw.githubusercontent.com/cpu152650311-coder/solaris-drone-test/main/public/images/blog/how-do-autonomous-drones-navigate-inside-gps-denied-industrial-facilities--1.webp",
+      "featuredImage": "",
       "tags": [
-        "autonomous drones",
-        "indoor navigation",
+        "autonomous-drones",
+        "GPS-denied",
         "SLAM",
-        "sensor fusion",
-        "industrial inspection"
+        "industrial-inspection",
+        "LiDAR"
       ],
-      "readingTime": 7,
+      "readingTime": 6,
       "seoKeywords": [
         "GPS-denied drone navigation",
-        "industrial drone inspection",
-        "LiDAR SLAM",
-        "autonomous indoor drones",
-        "drone sensor fusion"
+        "LiDAR SLAM industrial",
+        "visual-inertial odometry drone",
+        "indoor drone inspection",
+        "autonomous inspection drone"
       ]
     },
     {
