@@ -332,3 +332,131 @@ export default function DifferentiatorsSection() {
                       position: 'relative',
                       width: '14px',
                       height: '14px',
+                      borderRadius: '50%',
+                      background: 'var(--color-accent)',
+                    }}
+                  >
+                    <div className="defect-pulse" style={{ position: 'absolute', inset: '-4px', borderRadius: '50%', background: 'var(--color-accent)', opacity: 0.3 }} />
+                  </div>
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '18px',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      background: 'var(--color-surface)',
+                      border: '1px solid var(--color-accent)',
+                      borderRadius: '6px',
+                      padding: '0.3rem 0.6rem',
+                      whiteSpace: 'nowrap',
+                      fontSize: '0.68rem',
+                      fontFamily: 'var(--font-display)',
+                      fontWeight: 600,
+                      color: 'var(--color-accent)',
+                      boxShadow: '0 2px 8px var(--color-shadow)',
+                    }}
+                  >
+                    {pin.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Global Hubs Map */}
+        <div style={{ marginBottom: 'clamp(2rem, 4vw, 3rem)' }}>
+          <div className="reveal" style={{ marginBottom: '1rem' }}>
+            <span className="label-tag">Global Deployment</span>
+          </div>
+          <div className="accent-rule reveal reveal-delay-1" style={{ marginBottom: '1.25rem' }} />
+          <h3 className="section-heading reveal reveal-delay-2" style={{ marginBottom: '2rem', fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)' }}>
+            4 Regional Hubs.
+            <span style={{ color: 'var(--color-accent)' }}> 24-Hour Deployment.</span>
+          </h3>
+
+          <div
+            className="reveal"
+            style={{
+              position: 'relative',
+              background: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
+              borderRadius: '14px',
+              padding: '2rem',
+              boxShadow: '0 4px 24px var(--color-shadow)',
+            }}
+            aria-label="Global deployment hubs map"
+          >
+            <div style={{ position: 'relative', width: '100%', paddingTop: '50%', background: 'var(--color-surface-2)', borderRadius: '8px', overflow: 'hidden' }}>
+              {/* Simplified world map dots */}
+              {GLOBAL_HUBS.map((hub) => (
+                <div
+                  key={hub.city}
+                  style={{
+                    position: 'absolute',
+                    left: hub.x,
+                    top: hub.y,
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                  onMouseEnter={() => setActiveHub(hub.city)}
+                  onMouseLeave={() => setActiveHub(null)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${hub.city} — ${hub.region}`}
+                  onFocus={() => setActiveHub(hub.city)}
+                  onBlur={() => setActiveHub(null)}
+                >
+                  <div
+                    style={{
+                      width: activeHub === hub.city ? '16px' : '10px',
+                      height: activeHub === hub.city ? '16px' : '10px',
+                      borderRadius: '50%',
+                      background: activeHub === hub.city ? 'var(--color-accent)' : 'var(--color-secondary)',
+                      transition: 'all 0.3s',
+                      boxShadow: activeHub === hub.city ? '0 0 0 6px oklch(56% 0.14 185 / 0.2)' : '0 0 0 3px oklch(52% 0.18 255 / 0.15)',
+                    }}
+                  />
+                  <div className="map-pin-ring" style={{ position: 'absolute', top: '-4px', left: '-4px', width: activeHub === hub.city ? '24px' : '18px', height: activeHub === hub.city ? '24px' : '18px', borderRadius: '50%', background: 'var(--color-accent)', opacity: 0 }} />
+                  {activeHub === hub.city && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '100%',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        marginTop: '0.5rem',
+                        background: 'var(--color-text)',
+                        color: 'white',
+                        borderRadius: '8px',
+                        padding: '0.6rem 1rem',
+                        whiteSpace: 'nowrap',
+                        zIndex: 10,
+                        boxShadow: '0 8px 24px oklch(22% 0.03 240 / 0.3)',
+                      }}
+                    >
+                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.82rem' }}>{hub.city}</div>
+                      <div style={{ fontSize: '0.7rem', opacity: 0.75 }}>{hub.region}</div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Hub labels */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1rem', marginTop: '1.5rem' }}>
+              {GLOBAL_HUBS.map((hub) => (
+                <div key={hub.city} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-secondary)', flexShrink: 0 }} />
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-text)' }}>{hub.city}</div>
+                    <div style={{ fontSize: '0.68rem', color: 'var(--color-text-muted)' }}>{hub.region}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
