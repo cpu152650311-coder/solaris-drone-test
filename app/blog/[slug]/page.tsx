@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 
 interface Post {
@@ -10,7 +11,6 @@ interface Post {
   category: string;
   author: string;
   publishedAt: string;
-  modifiedAt: string;
   featuredImage: string;
   tags: string[];
   readingTime: number;
@@ -49,30 +49,43 @@ function markdownToHtml(md: string): string {
 }
 
 export default function BlogPostPage() {
+  const params = useParams();
+  const slug = (params?.slug as string) || "";
+
   const [manifest, setManifest] = useState<Manifest | null>(null);
   const [post, setPost] = useState<Post | null>(null);
   const [html, setHtml] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const slug = typeof window !== "undefined"
-    ? window.location.pathname.split("/blog/")[1]?.replace(/\/$/, "")
-    : "";
+  const loadPost = useCallback(async (s: string) => {
+    setLoading(true);
+    setError("");
+    try {
+      const r = await fetch(`${RAW_BASE}/content/blog/manifest.json`, { cache: "no-store" });
+      if (!r.ok) throw new Error(`Manifest HTTP ${r.status}`);
+      const manifestData: Manifest = await r.json();
+
+      const found = manifestData.posts.find((p: Post) => p.slug === s);
+      if (!found) throw new Error("Post not found");
+
+      setManifest(manifestData);
+      setPost(found);
+
+      const cr = await fetch(`${RAW_BASE}/content/blog/${s}/content.md`, { cache: "no-store" });
+      if (!cr.ok) throw new Error("Content not available");
+      const md = await cr.text();
+      setHtml(markdownToHtml(md));
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Failed to load");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    fetch(`${RAW_BASE}/content/blog/manifest.json`, { cache: "no-store" })
-      .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
-      .then((d) => {
-        setManifest(d);
-        const found = d.posts.find((p: Post) => p.slug === slug);
-        if (!found) throw new Error("Post not found");
-        setPost(found);
-        return fetch(`${RAW_BASE}/content/blog/${slug}/content.md`, { cache: "no-store" });
-      })
-      .then((r) => { if (!r.ok) throw new Error("Content not available"); return r.text(); })
-      .then((md) => { setHtml(markdownToHtml(md)); setLoading(false); })
-      .catch((e) => { setError(e.message); setLoading(false); });
-  }, [slug]);
+    if (slug) loadPost(slug);
+  }, [slug, loadPost]);
 
   if (loading) {
     return (
