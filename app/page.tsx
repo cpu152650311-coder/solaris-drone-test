@@ -4,8 +4,8 @@ import ServicesSection from '@/components/sections/ServicesSection';
 
 export default function HomePage() {
   return (
+    <Navigation />
     <main>
-      <Navigation />
       <HeroSection />
       <ServicesSection />
     </main>
