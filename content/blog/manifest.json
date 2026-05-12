@@ -1,0 +1,53 @@
+{
+  "updatedAt": "2026-05-12T00:00:00Z",
+  "posts": [
+    {
+      "slug": "autonomous-drones-industrial-inspection",
+      "title": "How Autonomous Drones Are Revolutionizing Industrial Inspection",
+      "description": "Discover how autonomous drone technology is transforming industrial inspections with faster, safer, and more accurate data collection.",
+      "category": "industry-insights",
+      "author": "solaris-team",
+      "publishedAt": "2026-05-12T00:00:00Z",
+      "modifiedAt": "2026-05-12T00:00:00Z",
+      "featuredImage": "",
+      "tags": ["autonomous-drones", "industrial-inspection", "aerial-robotics"],
+      "readingTime": 8,
+      "seoKeywords": ["autonomous drones", "industrial inspection", "drone technology"]
+    },
+    {
+      "slug": "ai-powered-flight-systems",
+      "title": "The Rise of AI-Powered Flight Systems in Commercial Drones",
+      "description": "An in-depth look at how artificial intelligence is powering the next generation of commercial drone flight systems.",
+      "category": "technology-deep-dives",
+      "author": "solaris-team",
+      "publishedAt": "2026-05-10T00:00:00Z",
+      "modifiedAt": "2026-05-10T00:00:00Z",
+      "featuredImage": "",
+      "tags": ["ai-flight-systems", "commercial-drones", "deep-tech"],
+      "readingTime": 10,
+      "seoKeywords": ["AI flight systems", "commercial drones", "drone AI"]
+    },
+    {
+      "slug": "drone-delivery-future-logistics",
+      "title": "Drone Delivery: The Future of Last-Mile Logistics",
+      "description": "Exploring how drone delivery is reshaping last-mile logistics with faster delivery times and reduced carbon emissions.",
+      "category": "case-studies",
+      "author": "solaris-team",
+      "publishedAt": "2026-05-08T00:00:00Z",
+      "modifiedAt": "2026-05-08T00:00:00Z",
+      "featuredImage": "",
+      "tags": ["drone-delivery", "logistics", "last-mile"],
+      "readingTime": 7,
+      "seoKeywords": ["drone delivery", "last-mile logistics", "delivery drones"]
+    }
+  ],
+  "categories": [
+    { "slug": "industry-insights", "name": "Industry Insights" },
+    { "slug": "technology-deep-dives", "name": "Technology Deep Dives" },
+    { "slug": "case-studies", "name": "Case Studies" },
+    { "slug": "product-updates", "name": "Product Updates" }
+  ],
+  "authors": [
+    { "slug": "solaris-team", "name": "Solaris Team", "avatar": "" }
+  ]
+}
