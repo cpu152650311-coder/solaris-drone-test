@@ -115,6 +115,14 @@ export default function BlogPostPage() {
           &larr; Back to Blog
         </Link>
 
+        {post.featuredImage && (
+          <img
+            src={post.featuredImage}
+            alt={post.title}
+            className="w-full h-64 md:h-80 object-cover rounded-xl mb-8"
+          />
+        )}
+
         <div className="mb-8 pb-6 border-b border-gray-200">
           <span className="text-xs font-medium text-blue-600 uppercase tracking-wider">
             {category?.name ?? post.category}
