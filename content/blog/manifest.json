@@ -4,22 +4,26 @@
     {
       "slug": "how-do-autonomous-drones-navigate-inside-gps-denied-industrial-facilities-",
       "title": "How do autonomous drones navigate inside GPS-denied industrial facilities?",
-      "description": "Direct answer to indoor drone navigation without GPS: sensor fusion, SLAM, and external references like UWB beacons. Covers LiDAR, thermal cameras, IMU.",
+      "description": "Discover how industrial inspection drones use LiDAR, SLAM, and sensor fusion to navigate without GPS. Explore real-world applications and technology driving centimeter-level accuracy.",
       "category": "technology-deep-dives",
       "author": "solaris-team",
       "publishedAt": "2026-05-12T00:00:00Z",
       "modifiedAt": "2026-05-12T00:00:00Z",
       "featuredImage": "https://raw.githubusercontent.com/cpu152650311-coder/solaris-drone-test/main/public/images/blog/how-do-autonomous-drones-navigate-inside-gps-denied-industrial-facilities--1.webp",
       "tags": [
-        "autonomous-drones",
-        "indoor-navigation",
-        "industrial-inspection"
+        "autonomous drones",
+        "indoor navigation",
+        "SLAM",
+        "sensor fusion",
+        "industrial inspection"
       ],
-      "readingTime": 5,
+      "readingTime": 7,
       "seoKeywords": [
-        "GPS-denied navigation",
+        "GPS-denied drone navigation",
         "industrial drone inspection",
-        "SLAM for drones"
+        "LiDAR SLAM",
+        "autonomous indoor drones",
+        "drone sensor fusion"
       ]
     },
     {
