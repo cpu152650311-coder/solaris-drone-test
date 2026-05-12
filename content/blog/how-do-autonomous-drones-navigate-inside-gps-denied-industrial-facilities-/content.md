@@ -20,9 +20,6 @@ Redundant IMU‑based attitude estimation and fallback optical flow modes enable
 
 Autonomous drones conquer GPS‑denied industrial spaces by tightly integrating multi‑modal perception, robust SLAM, and layered safety systems. As edge computing power increases and sensor costs fall, these capabilities will become the default for asset inspection. Emerging techniques such as neural radiance fields (NeRF) promise even denser 3D reconstructions, while on‑drone AI for real‑time defect analysis will further tighten the loop with digital twins, moving the industry toward fully autonomous facility oversight.
 
-## References
+---
 
-- Campos, C., Elvira, R., Rodríguez, J. J. G., Montiel, J. M. M., & Tardós, J. D. (2021). ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial, and Multi-Map SLAM. *IEEE Transactions on Robotics*, 37(6), 1874–1890.
-- Chung, T. H., Orekhov, V., & Maio, A. (2021). Into the Robotic Depths: Overview and Lessons Learned from the DARPA Subterranean Challenge. *Field Robotics*, 1, 1–32.
-- Ouster, Inc. (2023). OS0-128 Ultra-Wide View LiDAR Sensor Datasheet. Available at https://ouster.com/products/os0-lidar-sensor/.
-- ASTM International. (2022). ASTM F3586-22 Standard Practice for Performance Testing of Small Unmanned Aircraft Systems (sUAS) for Infrastructure Inspection. West Conshohocken, PA: ASTM International.
+*For more information about autonomous inspection solutions, contact the Solaris Robotics team.*
