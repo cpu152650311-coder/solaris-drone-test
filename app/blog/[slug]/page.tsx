@@ -1,8 +1,5 @@
-"use client";
-
-import { useEffect, useState, useCallback } from "react";
-import { useParams } from "next/navigation";
-import Link from "next/link";
+import type { Metadata } from 'next';
+import Link from 'next/link';
 
 interface Post {
   slug: string;
@@ -11,145 +8,161 @@ interface Post {
   category: string;
   author: string;
   publishedAt: string;
-  featuredImage: string;
   tags: string[];
   readingTime: number;
 }
 
 interface Manifest {
-  updatedAt: string;
   posts: Post[];
   categories: { slug: string; name: string }[];
 }
 
-const RAW_BASE = "https://raw.githubusercontent.com/cpu152650311-coder/solaris-drone-test/main";
+const RAW_BASE = 'https://raw.githubusercontent.com/cpu152650311-coder/solaris-drone-test/main';
 
-function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString("en-US", {
-    year: "numeric", month: "long", day: "numeric",
-  });
+async function getPost(slug: string): Promise<Post | null> {
+  try {
+    const res = await fetch(`${RAW_BASE}/content/blog/manifest.json`, { next: { revalidate: 3600 } });
+    const manifest: Manifest = await res.json();
+    return manifest.posts.find((p) => p.slug === slug) ?? null;
+  } catch {
+    return null;
+  }
 }
 
-function markdownToHtml(md: string): string {
-  let html = md
-    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-    .replace(/^#### (.+)$/gm, '<h4 class="text-lg font-semibold mt-5 mb-2">$1</h4>')
-    .replace(/^### (.+)$/gm, '<h3 class="text-xl font-semibold mt-6 mb-3">$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2 class="text-2xl font-bold mt-8 mb-4">$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1 class="text-3xl font-bold mt-8 mb-4">$1</h1>')
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\*(.+?)\*/g, "<em>$1</em>")
-    .replace(/`([^`]+)`/g, '<code class="bg-gray-100 px-1 py-0.5 rounded text-sm">$1</code>')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">$1</a>')
-    .replace(/^---$/gm, '<hr class="my-6 border-gray-200" />')
-    .replace(/^> (.+)$/gm, '<blockquote class="border-l-4 border-blue-300 pl-4 italic text-gray-500 my-3">$1</blockquote>')
-    .replace(/\n\n/g, "</p><p class=\"mb-4 leading-relaxed text-gray-700\">")
-    .replace(/\n/g, "<br />");
-  return '<p class="mb-4 leading-relaxed text-gray-700">' + html + "</p>";
+async function getContent(slug: string): Promise<string> {
+  try {
+    const res = await fetch(`${RAW_BASE}/content/blog/${slug}/content.md`, { next: { revalidate: 3600 } });
+    if (!res.ok) return '';
+    return res.text();
+  } catch {
+    return '';
+  }
 }
 
-export default function BlogPostPage() {
-  const params = useParams();
-  const slug = (params?.slug as string) || "";
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const post = await getPost(params.slug);
+  if (!post) return { title: 'Post Not Found — Solaris Robotics' };
+  return {
+    title: `${post.title} — Solaris Robotics Blog`,
+    description: post.description,
+    openGraph: { title: post.title, description: post.description, type: 'article' },
+  };
+}
 
-  const [manifest, setManifest] = useState<Manifest | null>(null);
-  const [post, setPost] = useState<Post | null>(null);
-  const [html, setHtml] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+export default async function BlogDetailPage({ params }: { params: { slug: string } }) {
+  const post = await getPost(params.slug);
 
-  const loadPost = useCallback(async (s: string) => {
-    setLoading(true);
-    setError("");
-    try {
-      const r = await fetch(`${RAW_BASE}/content/blog/manifest.json`, { cache: "no-store" });
-      if (!r.ok) throw new Error(`Manifest HTTP ${r.status}`);
-      const manifestData: Manifest = await r.json();
-
-      const found = manifestData.posts.find((p: Post) => p.slug === s);
-      if (!found) throw new Error("Post not found");
-
-      setManifest(manifestData);
-      setPost(found);
-
-      const cr = await fetch(`${RAW_BASE}/content/blog/${s}/content.md`, { cache: "no-store" });
-      if (!cr.ok) throw new Error("Content not available");
-      const md = await cr.text();
-      setHtml(markdownToHtml(md));
-    } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : "Failed to load");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (slug) loadPost(slug);
-  }, [slug, loadPost]);
-
-  if (loading) {
+  if (!post) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="animate-spin h-8 w-8 border-2 border-blue-500 border-t-transparent rounded-full" />
+      <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f8fafc' }}>
+        <div style={{ textAlign: 'center' }}>
+          <h1 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '1rem' }}>Post Not Found</h1>
+          <p style={{ color: '#64748b', marginBottom: '1.5rem' }}>The article you are looking for does not exist or has been removed.</p>
+          <Link href="/blog" style={{ color: '#0d9488', fontWeight: 600 }}>← Back to Blog</Link>
+        </div>
       </div>
     );
   }
 
-  if (error) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
-        <p className="text-red-500">{error}</p>
-        <Link href="/blog" className="text-blue-600 hover:underline">Back to Blog</Link>
-      </div>
-    );
-  }
+  const content = await getContent(params.slug);
+  const category = post.category;
 
-  if (!post) return null;
-
-  const category = manifest?.categories.find(c => c.slug === post.category);
+  const formatDate = (d: string) =>
+    new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
   return (
-    <div className="min-h-screen bg-[#F8FAFB]">
-      <article className="container mx-auto px-6 py-16 max-w-3xl">
-        <Link href="/blog" className="text-blue-600 hover:underline text-sm mb-8 inline-block">
-          &larr; Back to Blog
-        </Link>
-
-        {post.featuredImage && (
-          <img
-            src={post.featuredImage}
-            alt={post.title}
-            className="w-full h-64 md:h-80 object-cover rounded-xl mb-8"
-          />
-        )}
-
-        <div className="mb-8 pb-6 border-b border-gray-200">
-          <span className="text-xs font-medium text-blue-600 uppercase tracking-wider">
-            {category?.name ?? post.category}
-          </span>
-          <h1 className="text-3xl md:text-4xl font-bold mt-2 mb-3">{post.title}</h1>
-          <p className="text-gray-500 mb-4">{post.description}</p>
-          <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400">
-            <span>{post.author}</span>
-            <span>·</span>
-            <span>{post.readingTime} min read</span>
-            <span>·</span>
-            <span>{formatDate(post.publishedAt)}</span>
+    <div style={{ minHeight: '100vh', background: '#f8fafc' }}>
+      <div
+        style={{
+          background: 'linear-gradient(135deg, #0d9488 0%, #0f766e 100%)',
+          color: 'white',
+          padding: 'clamp(3rem, 8vw, 6rem) 1.5rem clamp(2rem, 5vw, 4rem)',
+          textAlign: 'center',
+        }}
+      >
+        <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', background: 'rgba(255,255,255,0.15)', padding: '0.3rem 0.75rem', borderRadius: '999px' }}>
+              {category}
+            </span>
+            <span style={{ fontSize: '0.72rem', opacity: 0.8, padding: '0.3rem 0' }}>
+              {post.readingTime} min read · {formatDate(post.publishedAt)}
+            </span>
           </div>
-          <div className="flex flex-wrap gap-1.5 mt-3">
-            {post.tags.map((tag) => (
-              <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
-                {tag}
-              </span>
-            ))}
+          <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 800, lineHeight: 1.2, letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+            {post.title}
+          </h1>
+          <p style={{ fontSize: '1.05rem', opacity: 0.85, maxWidth: '560px', margin: '0 auto' }}>
+            {post.description}
+          </p>
+          <div style={{ marginTop: '1.5rem', fontSize: '0.85rem', opacity: 0.7 }}>
+            By {post.author}
           </div>
         </div>
+      </div>
 
-        <div
-          className="prose-custom max-w-none"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      </article>
+      <div style={{ maxWidth: '760px', margin: '0 auto', padding: 'clamp(2rem, 5vw, 4rem) 1.5rem' }}>
+        {content ? (
+          <article
+            style={{
+              background: 'white',
+              borderRadius: '14px',
+              padding: 'clamp(1.5rem, 4vw, 3rem)',
+              border: '1px solid #e2e8f0',
+              lineHeight: 1.85,
+              fontSize: '1rem',
+              color: '#334155',
+            }}
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
+        ) : (
+          <div
+            style={{
+              background: 'white',
+              borderRadius: '14px',
+              padding: 'clamp(1.5rem, 4vw, 3rem)',
+              border: '1px solid #e2e8f0',
+              textAlign: 'center',
+              color: '#64748b',
+            }}
+          >
+            <p>Content is being prepared. Check back soon.</p>
+          </div>
+        )}
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '2rem', marginBottom: '2rem' }}>
+          {post.tags.map((tag) => (
+            <span
+              key={tag}
+              style={{
+                fontSize: '0.72rem',
+                fontWeight: 500,
+                color: '#0d9488',
+                background: '#ccfbf1',
+                padding: '0.3rem 0.75rem',
+                borderRadius: '999px',
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <Link
+          href="/blog"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            color: '#0d9488',
+            fontWeight: 600,
+            textDecoration: 'none',
+            fontSize: '0.9rem',
+          }}
+        >
+          ← Back to all articles
+        </Link>
+      </div>
     </div>
   );
 }
