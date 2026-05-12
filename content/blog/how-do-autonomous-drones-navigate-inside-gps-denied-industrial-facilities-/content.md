@@ -1,0 +1,19 @@
+# How do autonomous drones navigate inside GPS-denied industrial facilities?
+
+Autonomous drones navigate GPS-denied industrial environments by combining onboard sensor fusion with simultaneous localization and mapping (SLAM) algorithms. They create real-time 3D maps using LiDAR, stereo cameras, or thermal imaging while tracking their position through inertial measurement units (IMU), then correct drift via pre-installed ultrawideband (UWB) beacons or visual fiducials. This layered approach yields position accuracy within 5–10 cm, even in dark, dusty, or structurally complex facilities.
+
+## What sensor fusion techniques enable robust indoor positioning?
+
+The core is tight coupling of a 9-DOF IMU (accelerometer, gyroscope, magnetometer) with visual-inertial odometry (VIO) and LiDAR data at 200–400 Hz. The IMU provides high-frequency dead reckoning, while a 360° LiDAR such as the Velodyne Puck Hi-Res captures 300,000 points per second to detect geometric features. VIO from a global-shutter stereo camera tracks natural features across frames, and an extended Kalman filter fuses these streams to suppress drift. Thermal cameras are added for low-visibility conditions, identifying heat signatures of pipes or machinery that visual cameras might miss. This fusion reduces drift to less than 0.5% of distance traveled before external corrections.
+
+## How does SLAM maintain accuracy in dynamic industrial environments?
+
+Graph-based SLAM with loop closure detection anchors the drone’s trajectory by recognizing previously visited locations. When the drone re-observes a distinctive cluster of LiDAR points or a visual keyframe, it adds a constraint to the pose graph and triggers a global optimization using g2o or GTSAM solvers. This corrects accumulated drift and can reduce error from meters back to centimeter level. For changing environments—like a factory floor with moving equipment—the system employs lifelong mapping techniques that treat dynamic objects as outliers using semantic segmentation on camera feeds. The static map is updated incrementally, maintaining a 2 cm resolution occupancy grid that the planner relies on.
+
+## What role do external reference systems play?
+
+Pre-surveyed UWB beacons operating at 3.5–6.5 GHz provide absolute position fixes independent of onboard sensors. With four or more anchors deployed across a facility, time-difference-of-arrival trilateration delivers drone position updates at 10–50 Hz with 10–30 cm accuracy. These measurements are fused into the SLAM framework as global constraints, resetting any residual drift. Visual fiducials like AprilTags or ArUco markers placed at known inspection points offer even tighter localization—sub-5 cm pose estimates—when the drone is within 2 m of the marker. This hybrid approach ensures that critical inspection data is georeferenced to the facility’s coordinate system with high repeatability.
+
+## How do drones handle obstacle avoidance in confined spaces?
+
+A real-time motion planner fuses the SLAM occupancy grid with depth data from an ultrasonic ring array (8 sensors at 40 kHz) and short-range time-of-flight sensors. The planner generates a collision-free path using a kinodynamic RRT* algorithm that respects the drone’s acceleration limits and updates at 10 Hz. When navigating through narrow gaps, the system switches to a reactive local planner that maintains a 30 cm safety buffer while tracking the global path. In total darkness, the LiDAR and ultrasonic array alone provide enough data for safe flight, with the LiDAR offering 360° coverage up to 100 m and the ultrasonics catching transparent or reflective surfaces like glass or polished metal.
