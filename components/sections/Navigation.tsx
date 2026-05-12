@@ -6,6 +6,7 @@ import Link from 'next/link';
 const NAV_LINKS = [
   { label: 'Technology', href: '#technology' },
   { label: 'Services', href: '#services' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'Global', href: '#global' },
   { label: 'About', href: '#about' },
@@ -89,9 +90,9 @@ export default function Navigation() {
           className="hidden-mobile"
         >
           {NAV_LINKS.map((link) => (
-            <a key={link.href} href={link.href} className="nav-link">
-              {link.label}
-            </a>
+            link.href.startsWith('/')
+              ? <Link key={link.href} href={link.href} className="nav-link">{link.label}</Link>
+              : <a key={link.href} href={link.href} className="nav-link">{link.label}</a>
           ))}
         </nav>
 
@@ -150,15 +151,9 @@ export default function Navigation() {
           }}
         >
           {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="nav-link"
-              onClick={() => setMobileOpen(false)}
-              style={{ fontSize: '1rem', padding: '0.25rem 0' }}
-            >
-              {link.label}
-            </a>
+            link.href.startsWith('/')
+              ? <Link key={link.href} href={link.href} className="nav-link" onClick={() => setMobileOpen(false)} style={{ fontSize: '1rem', padding: '0.25rem 0' }}>{link.label}</Link>
+              : <a key={link.href} href={link.href} className="nav-link" onClick={() => setMobileOpen(false)} style={{ fontSize: '1rem', padding: '0.25rem 0' }}>{link.label}</a>
           ))}
           <a
             href="#contact"
